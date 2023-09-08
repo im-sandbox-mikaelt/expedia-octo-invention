@@ -39,13 +39,14 @@ jobs:
       - name: Run only if a PR is opened
         if: ${{ github.event_name == 'pull_request' }}
         run: echo Hello from the PR!! 
+ 
 
-
-  deployment:
-    runs-on: ubuntu-latest
-    needs: [build]
-    environment: DEV
-    steps:
-      - name: deploy
-        run: echo Hello from the Deployment
-        # ...deployment-specific steps     
+      - uses: actions/checkout@v3
+        with:
+          repository: 'im-sandbox-mikaelt/hello-expedia2-composite-action'
+          path: ./.github/actions/hello-expedia2-composite-action
+  
+      - name: Composite Action from a Private Repo
+        uses: ./.github/actions/hello-expedia2-composite-action
+        with:
+          who-to-greet: 'Mona the Octocat with Expedia!!'
