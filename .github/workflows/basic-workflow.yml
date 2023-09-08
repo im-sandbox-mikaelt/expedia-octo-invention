@@ -35,12 +35,16 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
+  selfhostedjob1: #id
+    # The type of runner that the job will run on
+    runs-on: [Prod2]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
       
       - name: Run only if a PR is opened
         if: ${{ github.event_name == 'pull_request' }}
         run: echo Hello from the PR!! 
  
-
       - uses: actions/checkout@v3
         with:
           repository: 'im-sandbox-mikaelt/hello-expedia2-composite-action'
